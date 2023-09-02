@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Data Visualization</title>
+    <title>Ninja-Braude Medical Data Visualization</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -22,11 +22,6 @@
             text-align: center;
             margin-top: 5%;
             margin-bottom: 3%;
-        }
-
-        .touch-detected {
-            font-size: 1.8em;
-            color: #d9534f;
         }
 
         body {
@@ -73,7 +68,7 @@
     </nav>
 
     <div class="container">
-        <div class="headline">Laser Sensor</div>
+        <div class="headline">Data from Ninja-Braude</div>
         <hr>
         <div id="content"></div>
     </div>
@@ -85,7 +80,7 @@
     <script>
         // Your web app's Firebase Configuration
         var firebaseConfig = {
-            apiKey: "YOUR_API_KEY",  // Ensure to replace this with your actual API key
+            apiKey: "YOUR_API_KEY",
             authDomain: "teamrocket-f28dc.firebaseapp.com",
             databaseURL: "https://teamrocket-f28dc-default-rtdb.firebaseio.com",
             projectId: "teamrocket-f28dc",
@@ -98,8 +93,7 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        var firebaseRef = firebase.database().ref("Data1");
-        var isFirstFalse = true; 
+        var firebaseRef = firebase.database().ref("test");
 
         function getCurrentTime() {
             const date = new Date();
@@ -111,18 +105,11 @@
 
         firebaseRef.limitToLast(1).on("child_added", function (childSnapshot) {
             const data = childSnapshot.val();
-
-            if (data === false || data === "False") {
-                if (isFirstFalse) {
-                    isFirstFalse = false;
-                    return;
-                }
-                const time = getCurrentTime();
-                const displayMessage = `<div class='alert alert-danger touch-detected animate__animated animate__fadeIn'>
-                    Touch has been detected at ${time}
-                </div>`;
-                document.querySelector('#content').innerHTML += displayMessage;
-            }
+            const time = getCurrentTime();
+            const displayMessage = `<div class='animate__animated animate__fadeIn'>
+                Data received at ${time}: ${data}
+            </div>`;
+            document.querySelector('#content').innerHTML += displayMessage;
         });
     </script>
 

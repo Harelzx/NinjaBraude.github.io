@@ -70,7 +70,7 @@
     <div class="container">
         <div class="headline">Data from Ninja-Braude</div>
         <hr>
-        <div id="content"></div>
+        <div id="allDataContent"></div>
     </div>
 
     <footer>
@@ -93,11 +93,6 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        var laserTopic = firebase.database().ref("laser");
-        var startTopic = firebase.database().ref("start");
-        var endTopic = firebase.database().ref("end");
-        var testTopic = firebase.database().ref("test");
-
         function getCurrentTime() {
             const date = new Date();
             const hours = String(date.getHours()).padStart(2, '0');
@@ -106,44 +101,31 @@
             return `${hours}:${minutes}:${seconds}`;
         }
 
-        laserTopic.limitToLast(1).on("child_added", function (childSnapshot) {
-            const data = childSnapshot.val();
-            const time = getCurrentTime();
-            const displayMessage = `<div class='animate__animated animate__fadeIn'>
-                Data received at ${time}: ${data}
-            </div>`;
-            document.querySelector('#content').innerHTML += displayMessage;
-        });
+        function listenToTopic(topicName) {
+            var isFirstData = true;
+            var topicRef = firebase.database().ref(topicName);
 
-        
-        startTopic.limitToLast(1).on("child_added", function (childSnapshot) {
-            const data = childSnapshot.val();
-            const time = getCurrentTime();
-            const displayMessage = `<div class='animate__animated animate__fadeIn'>
-                Data received at ${time}: ${data}
-            </div>`;
-            document.querySelector('#content').innerHTML += displayMessage;
-        });
+            topicRef.limitToLast(1).on("child_added", function (childSnapshot) {
+                if (isFirstData) {
+                    isFirstData = false;
+                    return;
+                }
 
-        
-        endTopic.limitToLast(1).on("child_added", function (childSnapshot) {
-            const data = childSnapshot.val();
-            const time = getCurrentTime();
-            const displayMessage = `<div class='animate__animated animate__fadeIn'>
-                Data received at ${time}: ${data}
-            </div>`;
-            document.querySelector('#content').innerHTML += displayMessage;
-        });
+                const data = childSnapshot.val();
+                const time = getCurrentTime();
+                const displayMessage = `<div class='animate__animated animate__fadeIn'>
+                    ${topicName} data received at ${time}: ${data}
+                </div>`;
+                document.querySelector('#allDataContent').innerHTML += displayMessage;
+            });
+        }
 
-        
-        testTopic.limitToLast(1).on("child_added", function (childSnapshot) {
-            const data = childSnapshot.val();
-            const time = getCurrentTime();
-            const displayMessage = `<div class='animate__animated animate__fadeIn'>
-                Data received at ${time}: ${data}
-            </div>`;
-            document.querySelector('#content').innerHTML += displayMessage;
-        });
+        listenToTopic("laser");
+        listenToTopic("start");
+        listenToTopic("end");
+        listenToTopic("test");
+        listenToTopic("height");
+
     </script>
 
     <!-- Bootstrap's JS and Popper.js for the navigation collapse functionality -->

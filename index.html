@@ -93,7 +93,10 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        var firebaseRef = firebase.database().ref("laser");
+        var laserTopic = firebase.database().ref("laser");
+        var startTopic = firebase.database().ref("start");
+        var endTopic = firebase.database().ref("end");
+        var testTopic = firebase.database().ref("test");
 
         function getCurrentTime() {
             const date = new Date();
@@ -103,7 +106,37 @@
             return `${hours}:${minutes}:${seconds}`;
         }
 
-        firebaseRef.limitToLast(1).on("child_added", function (childSnapshot) {
+        laserTopic.limitToLast(1).on("child_added", function (childSnapshot) {
+            const data = childSnapshot.val();
+            const time = getCurrentTime();
+            const displayMessage = `<div class='animate__animated animate__fadeIn'>
+                Data received at ${time}: ${data}
+            </div>`;
+            document.querySelector('#content').innerHTML += displayMessage;
+        });
+
+        
+        startTopic.limitToLast(1).on("child_added", function (childSnapshot) {
+            const data = childSnapshot.val();
+            const time = getCurrentTime();
+            const displayMessage = `<div class='animate__animated animate__fadeIn'>
+                Data received at ${time}: ${data}
+            </div>`;
+            document.querySelector('#content').innerHTML += displayMessage;
+        });
+
+        
+        endTopic.limitToLast(1).on("child_added", function (childSnapshot) {
+            const data = childSnapshot.val();
+            const time = getCurrentTime();
+            const displayMessage = `<div class='animate__animated animate__fadeIn'>
+                Data received at ${time}: ${data}
+            </div>`;
+            document.querySelector('#content').innerHTML += displayMessage;
+        });
+
+        
+        testTopic.limitToLast(1).on("child_added", function (childSnapshot) {
             const data = childSnapshot.val();
             const time = getCurrentTime();
             const displayMessage = `<div class='animate__animated animate__fadeIn'>

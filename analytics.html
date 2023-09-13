@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ninja-Braude Medical Data Visualization</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
+  <!-- Animate.css for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <!-- External CSS file -->
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Ninja-Braude</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="liveData.html">Live Data</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="analytics.html">Analytics</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+  <div class="container">
+
+    <div class="headline">
+      <h1>Analytics</h1> 
+    </div>
+
+    <hr>
+
+    <div id="allDataContent"></div>
+
+    <ul class="liveDataList" id="itemList"></ul>
+
+    <!-- Sessions chart canvas -->
+    <h2>Duration of Sessions</h2>
+    <canvas id="sessionsChart" width="400" height="200"></canvas>
+
+    <h2>Number of Hits</h2>
+    
+    <!-- Hits chart canvas -->
+    <canvas id="hitsChart" width="400" height="200"></canvas>
+
+    <!-- Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+
+    <!-- External JavaScript file -->
+    <script src="liveData.js"></script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+      // Variable to hold current chart instance
+      var currentChart = null;
+
+      // Fetch latest 5 sessions from Firebase
+      var sessionsRef = firebase.database().ref('sessions').orderByKey().limitToLast(5);
+      sessionsRef.once('value', function(snapshot) {
+        var sessionsData = snapshot.val();
+        var sessionLabels = [];
+        var sessionDurations = [];
+
+        // Extract data for chart
+        for (var sessionKey in sessionsData) {
+          var session = sessionsData[sessionKey];
+          var startTime = session.start ? session.start.timestamp : null;
+          var endTime = session.end ? session.end.timestamp : null;
+
+          if (startTime && endTime) {
+            var duration = (endTime - startTime) / 1000; // Convert to seconds
+            sessionLabels.push(sessionKey);
+            sessionDurations.push(duration);
+          }
+        }
+
+        // Destroy existing chart if present
+        if (currentChart) {
+          currentChart.destroy();
+        }
+
+        // Update chart with fetched data
+        var ctx = document.getElementById('sessionsChart').getContext('2d');
+        currentChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: sessionLabels,
+            datasets: [{
+              label: 'Duration (seconds)',
+              data: sessionDurations, 
+              backgroundColor: 'royalblue',
+              borderColor: 'black',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: true
+          }
+        });
+      });
+
+      // Fetch latest 5 sessions for hit counts
+      var hitSessionsRef = firebase.database().ref('sessions').orderByKey().limitToLast(5);
+      hitSessionsRef.once('value', function(snapshot) {
+        var sessionsData = snapshot.val();
+        var sessionLabels = [];
+        var hitCounts = [];
+
+        // Extract data for hits chart
+        for (var sessionKey in sessionsData) {
+          var session = sessionsData[sessionKey];
+          var hits = 0;
+
+          if (session.hit1) hits += 1; 
+          if (session.hit2) hits += 1;
+          if (session.hit3) hits += 1;
+
+          sessionLabels.push(sessionKey);
+          hitCounts.push(hits);
+        }
+
+        // Render hit counts chart
+        var ctxHits = document.getElementById('hitsChart').getContext('2d');
+        var hitsChart = new Chart(ctxHits, {
+          type: 'bar',
+          data: {
+            labels: sessionLabels,
+            datasets: [{
+              label: 'Number of Hits',
+              data: hitCounts,
+              backgroundColor: 'limegreen',
+              borderColor: 'black',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 3
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: true
+          }
+        });
+      });
+
+    </script>
+
+  </div>
+
+</body>
+
+</html>

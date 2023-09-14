@@ -20,6 +20,17 @@ body {
     margin-top: 20px;
 }
 
+.postFont {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.poster_container {
+    padding: 30px;
+    background-color: #eeeeee;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
 .liveDataList {
     list-style-type:none;
     justify-content: center;
@@ -36,21 +47,6 @@ body {
     display: inline-block;
     border-radius: 10px;
     width: 60%;
-}
-
-.teamContainer {
-    max-width: 35%;
-    margin: 25px;
-}
-
-.memberContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px; /* Add spacing between team members */
-}
-
-.nameItem {
-    flex-grow: 1;
 }
 
 .linkedinImg {
@@ -87,4 +83,90 @@ video {
 
 .endTopic {
     background: plum !important;
+}
+
+.chartTitle{
+    margin-top: 40px;
+}
+
+.classTitle {
+    text-align: center;
+    background-color: #007BFF;
+    color: white;
+    padding: 30px 0;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 20px;
+}
+
+.poster_intro, .poster_benefits, .poster_footer, .poster_members{
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #f7f7f7;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.poster_features, .poster_key-benefits {
+    padding: 25px;
+    background-color: #e6f2ff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.poster_ul {
+    list-style-type: disc;
+    padding-left: 50px;
+}
+
+.poster_li {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+strong {
+    color: #007BFF;
+}
+
+.poster_footer {
+    text-align: center;
+    font-style: italic;
+}
+
+.slideshow-frame {
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #eeeeee;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px; /* Adjust the fixed height as desired */
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 800px; /* Adjust the maximum width as desired */
+    overflow: hidden; /* Hide overflow for smoother transitions */
+}
+
+.slide {
+    display: none;
+    transition: opacity 0.5s ease-in-out; /* Add a smooth opacity transition */
+}
+
+img {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.fixImg {
+    height: 450px;
+}
+
+/* Add a class to control the active slide */
+.active {
+    display: block;
 }

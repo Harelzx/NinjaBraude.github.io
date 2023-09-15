@@ -48,7 +48,7 @@
 
         <hr>
 
-        <div>
+        <div class="chartDiv">
             <!-- Sessions chart canvas -->
             <h3 class="chartTitle">Duration of Sessions</h3>
             <canvas id="sessionsChart" width="400" height="200"></canvas>
@@ -56,6 +56,17 @@
             <!-- Hits chart canvas -->
             <h3 class="chartTitle">Number of Hits</h3>
             <canvas id="hitsChart" width="400" height="200"></canvas>
+            <hr>
+            <!-- Hits chart canvas -->
+            <h3 class="chartTitle">Hits Pie</h3>
+            <div class="picChartContainer">
+                <canvas id="pieChart"></canvas>
+            </div>
+
+            <hr>
+            <ul id="sessionsList" class="sessionItem"><h3 class="chartTitle">Session Data:</h3></ul>
+
+
         </div>
     </div>
 
@@ -66,9 +77,6 @@
     <!-- Firebase scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
-
-    <!-- External JavaScript file -->
-    <script src="liveData.js"></script>
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

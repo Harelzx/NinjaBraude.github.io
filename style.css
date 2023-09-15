@@ -170,3 +170,45 @@ img {
 .active {
     display: block;
 }
+
+.picChartContainer {
+    max-width: 500px; /* Adjust the maximum width as needed */
+    max-height: 500px; /* Adjust the maximum height as needed */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.sessionItem {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column; /* Display <li> elements vertically */
+    align-items: center; /* Center horizontally within the div */
+    text-align: left; /* Align text within <li> elements to the left */
+}
+
+.sessionDataItem {
+    margin: 10px;
+    list-style: none;
+    color: black;
+    display: inline-block;
+    border-radius: 10px;
+    width: 60%;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.twoHitsSeesion {
+    background: #ffb170 !important;
+}
+
+.threeHitSeesion {
+    background: #ff7474;
+}
+
+.chartDiv {
+    padding: 30px;
+}

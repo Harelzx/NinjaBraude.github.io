@@ -1,2 +1,2 @@
 # TeamRocket.github.io
-web page: https://harelzx.github.io/NinjaBraude.github.io/analytics.html
+web home page: https://harelzx.github.io/NinjaBraude.github.io/index.html

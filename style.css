@@ -172,7 +172,8 @@ img {
 
 .fixImg {
     width: 100%;
-    height: auto;
+    /*height: auto;*/
+    height: 450px;
 }
 
 /* Add a class to control the active slide */

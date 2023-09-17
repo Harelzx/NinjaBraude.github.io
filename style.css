@@ -172,8 +172,14 @@ img {
 
 .fixImg {
     width: 100%;
-    /*height: auto;*/
+    /* height: auto; */
     height: 450px;
+}
+
+@media (max-width: 768px) {
+    .fixImg {
+      height: auto;
+    }
 }
 
 /* Add a class to control the active slide */

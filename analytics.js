@@ -39,8 +39,6 @@ sessionsRef.once('value', function (snapshot) {
         if (session.hit1) hits += 1;
         if (session.hit2) hits += 1;
         if (session.hit3) hits += 1;
-        if (sessionKey.includes("10031"))
-            hits = 2;
         hitCounts.push(hits);
         barColors.push(getBarColor(hits));
         sessionLabels.push(sessionKey.replace("Data_", " "));
@@ -160,8 +158,6 @@ sessionsRef.once('value', function (snapshot) {
         if (session.hit1) hits += 1;
         if (session.hit2) hits += 1;
         if (session.hit3) hits += 1;
-        if (key.includes("10031"))
-            hits = 2;
         if (startTime && endTime) {
             duration = (endTime - startTime) / 1000; // Convert to seconds
             sessionDurations.push(duration);

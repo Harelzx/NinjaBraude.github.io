@@ -1,0 +1,236 @@
+/* style.css */
+.headline {
+    font-size: 30px;
+    text-decoration: underline;
+    text-align: center;
+    margin: 10px;
+}
+
+body {
+    background-color: #f5f5f5;
+    background-image: linear-gradient(to right, #f5f5f5, #e0e0e0); 
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.postFont {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.poster_container {
+    padding: 30px;
+    background-color: #eeeeee;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.liveDataList {
+    list-style-type:none;
+    justify-content: center;
+    text-align: center;
+}
+
+.liveDataItem {
+    margin: 10px;
+    font-size: 20px;
+    font-family: bold;
+    text-align: center;
+    list-style: none;
+    color: black;
+    display: inline-block;
+    border-radius: 10px;
+    width: 60%;
+}
+
+.linkedinImg {
+    max-width: 20px; /* Adjust the maximum width of the images as needed */
+    margin-left: 10px; /* Add spacing between the image and text */
+}
+
+footer {
+    text-align: center;
+    padding: 8px;
+    /* background-color: #343a40; */
+    background-color: rgba(52, 58, 64, 0.5);
+    color: white;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footerLiveData{
+    position: fixed;
+}
+
+#content {
+    margin-top: 20px;
+}
+
+video {
+    max-width: 30%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.endTopic {
+    background: plum !important;
+}
+
+.chartTitle{
+    margin-top: 40px;
+}
+
+.classTitle {
+    text-align: center;
+    background-color: #007BFF;
+    color: white;
+    padding: 30px 0;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 20px;
+}
+
+.poster_intro, .poster_benefits, .poster_footer, .poster_members{
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #f7f7f7;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.systemDesign {
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.poster_features, .poster_key-benefits {
+    padding: 25px;
+    background-color: #e6f2ff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.poster_ul {
+    list-style-type: disc;
+    padding-left: 50px;
+}
+
+.poster_li {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+strong {
+    color: #007BFF;
+}
+
+.poster_footer {
+    text-align: center;
+    font-style: italic;
+}
+
+.slideshow-frame {
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #eeeeee;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px; /* Adjust the fixed height as desired */
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 800px; /* Adjust the maximum width as desired */
+    overflow: hidden; /* Hide overflow for smoother transitions */
+}
+
+.slide {
+    display: none;
+    transition: opacity 0.5s ease-in-out; /* Add a smooth opacity transition */
+}
+
+img {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.fixImg {
+    width: 100%;
+    height: auto;
+}
+
+/* Add a class to control the active slide */
+.active {
+    display: block;
+}
+
+.picChartContainer {
+    max-width: 500px; /* Adjust the maximum width as needed */
+    max-height: 500px; /* Adjust the maximum height as needed */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.sessionItem {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column; /* Display <li> elements vertically */
+    align-items: center; /* Center horizontally within the div */
+    text-align: left; /* Align text within <li> elements to the left */
+}
+
+.sessionDataItem {
+    margin: 10px;
+    list-style: none;
+    color: black;
+    display: inline-block;
+    border-radius: 10px;
+    width: 60%;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.twoHitsSeesion {
+    background: #ffb170 !important;
+}
+
+.threeHitSeesion {
+    background: #ff7474;
+}
+
+.chartDiv {
+    padding: 30px;
+}
+
+
+/* General image responsiveness */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Video responsiveness */
+video[src*='Prototype'] {
+    width: 100%;
+    height: auto;
+}

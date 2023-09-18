@@ -191,7 +191,7 @@ function getBarColor(count) {
 function pieChartData(hitCounts) {
     const dummy = [0, 3, 0, 1, 0];
     const countMap = {};
-    for (const hit of dummy) {
+    for (const hit of hitCounts) {
         if (countMap[hit]) {
           countMap[hit]++;
         } else {
